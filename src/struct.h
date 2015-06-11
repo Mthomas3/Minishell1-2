@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar 29 18:49:08 2015 Thomas Martins
-** Last update Sun Mar 29 18:49:11 2015 Thomas Martins
+** Last update Wed Jun 10 22:24:09 2015 Thomas Martins
 */
 
 #ifndef STRUCT_H_
@@ -123,11 +123,11 @@ int		print_path(char **environ);
 int		print_prompt(char n, char **environ);
 int		check_word(char *str, char c);
 int		init_value(t_val *val);
-int		my_cmd(t_first *sh, t_val *val, char **env);
-int		read_two(t_first *sh, t_val *val, char **env);
+int		my_cmd(t_first *sh, t_val *val, char **env, char **);
+int		read_two(t_first *sh, t_val *val, char **env, char **);
 void		end_free(t_first *sh, t_val *val);
-int		check_redir(t_first *sh, t_val *val, char **env);
-int		my_redir(t_first *sh, t_val *val, char **env);
+int		check_redir(t_first *sh, t_val *val, char **env, char **);
+int		my_redir(t_first *sh, t_val *val, char **env, char *, char *, char **);
 char		**split_algo(char *s, char c, t_val *val, char **tab);
 char		**split_cmd(char *s, char c, t_val *val);
 int		my_strlen(char *str);

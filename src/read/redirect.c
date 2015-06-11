@@ -5,52 +5,61 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 17:15:33 2015 Thomas Martins
-** Last update Sun Mar 29 18:47:26 2015 Thomas Martins
+** Last update Thu Jun 11 13:06:51 2015 Thomas Martins
 */
 
 #include "../struct.h"
 
-int	check_redir(t_first *sh, t_val *val, char **env)
+int	check_redir(t_first *sh, t_val *val, char **env, char **avs)
 {
   int	a;
+  char	*command;
+  char	*command_two;
 
   a = -1;
+  command = malloc(sizeof(char *));
+  command_two = malloc(sizeof(char *));
   while (sh->argument[++a])
     {
       if (*sh->argument[a] == '>')
 	{
-	  val->arg = sh->argument[a - 1];
-	  val->arg_two = sh->argument[a + 1];
-	  if ((my_redir(sh, val, env)) < 0)
+	  command = sh->argument[a - 1];
+	  command_two = sh->argument[a + 1];
+	  if ((my_redir(sh, val, env, command, command_two, avs)) == EXIT_FAILURE)
 	    return (-1);
 	}
     }
   return (0);
 }
 
-int	my_redir(t_first *sh, t_val *val, char **env)
+int	my_redir(t_first *sh, t_val *val, char **env, char *cmd, char *cmd2, char **avs)
 {
+  int	fd;
+  int	cp;
   char	*tmp;
-  char	buff[4096];
+  char	buffer[4096];
+  int	pid;
 
-  if ((tmp = malloc(sizeof(char *))) == NULL)
-    return (-1);
-  val->fd_redir = open(val->arg_two, O_WRONLY | O_CREAT
-		       | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-  val->stdout_cpy = dup(1);
+  (void)val;
+  (void)pid;
+  sh->check++;
+  cmd = "/bin/cat";
+  cmd2 = "toto";
+  if ((tmp = malloc(sizeof(char **))) == NULL)
+    return (EXIT_FAILURE);
+  fd = open(cmd2, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+  cp = dup(1);
   close(1);
-  dup2(val->fd_redir, 1);
-  if ((sh->pid = fork()) == -1)
-    return (-1);
-  if ((my_pid(sh, val, env)) < 0)
-    return (-1);
-  while ((val->fd = read(1, buff, 4095)) > 0)
+  dup2(fd, 1);
+  my_pid(sh, val, env);
+  execve(cmd, avs, env);
+  while ((fd = read(1, buffer, 4095)) > 0)
     {
-      buff[val->fd] = 0;
+      buffer[fd] = 0;
       write(1, tmp, my_strlen(tmp));
       free(tmp);
     }
-  close(val->fd_redir);
-  dup2(val->stdout_cpy, 1);
-  return (0);
+  close(fd);
+  dup2(cp, 1);
+  return (EXIT_SUCCESS);
 }

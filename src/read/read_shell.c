@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 11:20:39 2015 Thomas Martins
-** Last update Sun Mar 29 14:12:08 2015 Thomas Martins
+** Last update Wed Jun 10 22:19:20 2015 Thomas Martins
 */
 
 #include "../struct.h"
@@ -27,7 +27,7 @@ int	check_word(char *str, char c)
   return (len);
 }
 
-int	my_cmd(t_first *sh, t_val *val, char **env)
+int	my_cmd(t_first *sh, t_val *val, char **env, char **avs)
 {
   int	a;
 
@@ -41,7 +41,7 @@ int	my_cmd(t_first *sh, t_val *val, char **env)
 	return (-1);
     }
   call_builtin(sh, env);
-  if ((check_redir(sh, val, env)) < 0)
+  if ((check_redir(sh, val, env, avs)) < 0)
     return (-1);
   if ((sh->pid = fork()) == -1)
     return (-1);
@@ -55,7 +55,7 @@ int	my_cmd(t_first *sh, t_val *val, char **env)
   return (0);
 }
 
-int	read_two(t_first *sh, t_val *val, char **env)
+int	read_two(t_first *sh, t_val *val, char **env, char **avs)
 {
   char	**tab;
   int	a;
@@ -73,7 +73,7 @@ int	read_two(t_first *sh, t_val *val, char **env)
 	  a = -1;
 	  while (tab[b][++a] == ' ');
 	  sh->buff2 = &tab[b][a];
-	  if ((my_cmd(sh, val, env)) < 0)
+	  if ((my_cmd(sh, val, env, avs)) < 0)
 	    return (-1);
 	}
       if ((print_prompt(0, env)) < 0)

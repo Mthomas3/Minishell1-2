@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 11:37:18 2015 Thomas Martins
-** Last update Sun Mar 29 22:19:57 2015 Thomas Martins
+** Last update Wed Jun 10 22:18:06 2015 Thomas Martins
 */
 
 #include <string.h>
@@ -36,7 +36,6 @@ int		main(int ac, char **av, char **environ)
   t_val		*val;
   t_first	*sh;
 
-  (void)av;
   if (ac > 1)
     arg_fail();
   if ((val = malloc(sizeof(*val))) == NULL)
@@ -48,7 +47,7 @@ int		main(int ac, char **av, char **environ)
       my_putstr("$>\n");
   init_terms(environ, sh, val, ac);
   sh->check = 0;
-  if ((read_two(sh, val, environ)) < 0)
+  if ((read_two(sh, val, environ, av)) < 0)
     return (1);
   end_free(sh, val);
   return (0);

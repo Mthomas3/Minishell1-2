@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 17:15:33 2015 Thomas Martins
-** Last update Fri Jun 12 23:45:52 2015 Thomas Martins
+** Last update Fri Jun 12 23:49:29 2015 Thomas Martins
 */
 
 #include "../struct.h"
@@ -56,7 +56,10 @@ int	pid_redir(char *cmd, char **avs, char **env, int *pid)
 
   status = 0;
   if (*pid == 0)
-    execve(cmd, avs, env);
+    {
+      if ((execve(cmd, avs, env)) == -1)
+	return (EXIT_FAILURE);
+    }
   else
     wait(&status);
   return (0);
@@ -81,8 +84,10 @@ int	my_redir(t_first *sh, t_val *val, char **env, char *cmd, char *cmd2, char **
   cp = dup(1);
   close(1);
   dup2(fd, 1);
-  pid = fork();
-  pid_redir(cmd, avs, env, &pid);
+  if ((pid = fork()) == -1)
+    return (EXIT_FAILURE);
+  if ((pid_redir(cmd, avs, env, &pid)) == EXIT_FAILURE)
+    return (EXIT_FAILURE);
   while ((fd = read(1, buffer, 4095)) > 0)
     {
       buffer[fd] = 0;

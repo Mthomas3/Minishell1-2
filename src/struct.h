@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar 29 18:49:08 2015 Thomas Martins
-** Last update Wed Jun 10 22:24:09 2015 Thomas Martins
+** Last update Fri Jun 12 23:25:48 2015 Thomas Martins
 */
 
 #ifndef STRUCT_H_
@@ -143,5 +143,6 @@ void		check_sigint(void);
 char		*epur_str(char *s);
 int		check(char *s);
 int		call_builtin(t_first *sh, char **env);
+char		*cat_str(char *, const char *);
 
 #endif

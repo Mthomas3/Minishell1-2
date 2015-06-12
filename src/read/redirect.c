@@ -5,10 +5,11 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 17:15:33 2015 Thomas Martins
-** Last update Thu Jun 11 13:06:51 2015 Thomas Martins
+** Last update Fri Jun 12 23:45:52 2015 Thomas Martins
 */
 
 #include "../struct.h"
+#include <string.h>
 
 int	check_redir(t_first *sh, t_val *val, char **env, char **avs)
 {
@@ -25,10 +26,39 @@ int	check_redir(t_first *sh, t_val *val, char **env, char **avs)
 	{
 	  command = sh->argument[a - 1];
 	  command_two = sh->argument[a + 1];
-	  if ((my_redir(sh, val, env, command, command_two, avs)) == EXIT_FAILURE)
+	  if ((my_redir(sh, val, env, command,
+			command_two, avs)) == EXIT_FAILURE)
 	    return (-1);
 	}
     }
+  return (0);
+}
+
+char	*change_str(char *cmd_old)
+{
+  char	*new_cmd;
+
+  if ((new_cmd = malloc(sizeof(char) * my_strlen(cmd_old) + 1)) == NULL)
+    return (NULL);
+  new_cmd[0] = '/';
+  new_cmd[1] = 'b';
+  new_cmd[2] = 'i';
+  new_cmd[3] = 'n';
+  new_cmd[4] = '/';
+  new_cmd[5] = '\0';
+  cat_str(new_cmd, cmd_old);
+  return (new_cmd);
+}
+
+int	pid_redir(char *cmd, char **avs, char **env, int *pid)
+{
+  int	status;
+
+  status = 0;
+  if (*pid == 0)
+    execve(cmd, avs, env);
+  else
+    wait(&status);
   return (0);
 }
 
@@ -41,18 +71,18 @@ int	my_redir(t_first *sh, t_val *val, char **env, char *cmd, char *cmd2, char **
   int	pid;
 
   (void)val;
-  (void)pid;
   sh->check++;
-  cmd = "/bin/cat";
-  cmd2 = "toto";
   if ((tmp = malloc(sizeof(char **))) == NULL)
     return (EXIT_FAILURE);
-  fd = open(cmd2, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+  if ((cmd = change_str(cmd)) == NULL)
+    return (EXIT_FAILURE);
+  fd = open(cmd2, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR
+	    | S_IWUSR | S_IRGRP | S_IROTH);
   cp = dup(1);
   close(1);
   dup2(fd, 1);
-  my_pid(sh, val, env);
-  execve(cmd, avs, env);
+  pid = fork();
+  pid_redir(cmd, avs, env, &pid);
   while ((fd = read(1, buffer, 4095)) > 0)
     {
       buffer[fd] = 0;

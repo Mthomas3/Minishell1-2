@@ -5,7 +5,7 @@
 ## Login   <mart_4@epitech.net>
 ##
 ## Started on  Mon Jan 26 23:47:17 2015 Thomas Martins
-## Last update Sun Mar 29 14:09:15 2015 Thomas Martins
+## Last update Fri Jun 12 23:25:12 2015 Thomas Martins
 ##
 
 SRC	= src/read/get_env.c \
@@ -29,6 +29,7 @@ SRC	= src/read/get_env.c \
 	src/read/my_cd.c \
 	src/word_tab/new_str_word_tab.c \
 	src/basic/help.c \
+	src/basic/cat_str.c \
 	src/read/redirect.c \
 	src/basic/epur_str.c \
 	src/read/call_builtin.c

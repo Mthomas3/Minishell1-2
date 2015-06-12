@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 17:15:33 2015 Thomas Martins
-** Last update Fri Jun 12 23:49:29 2015 Thomas Martins
+** Last update Fri Jun 12 23:51:36 2015 Thomas Martins
 */
 
 #include "../struct.h"
@@ -18,8 +18,10 @@ int	check_redir(t_first *sh, t_val *val, char **env, char **avs)
   char	*command_two;
 
   a = -1;
-  command = malloc(sizeof(char *));
-  command_two = malloc(sizeof(char *));
+  if ((command = malloc(sizeof(char *))))
+    return (-1);
+  if (!(command_two = malloc(sizeof(char *))))
+    return (-1);
   while (sh->argument[++a])
     {
       if (*sh->argument[a] == '>')

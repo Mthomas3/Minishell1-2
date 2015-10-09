@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Thu Jan 22 16:09:31 2015 Thomas Martins
-** Last update Sun Mar  8 22:32:36 2015 Thomas Martins
+** Last update Fri Oct  9 14:00:03 2015 Thomas Martins
 */
 
 #include <string.h>
@@ -23,4 +23,15 @@ int		my_strncmp(char *s1, char *s2, size_t n)
   if (i == n)
     return (0);
   return (s1[i] - s2[i]);
+}
+
+char		*my_strcpy(char *dest, const char *src)
+{
+  char		*d;
+
+  d = dest;
+  while (*src)
+    *(dest++) = *(src++);
+  *dest = 0;
+  return (d);
 }

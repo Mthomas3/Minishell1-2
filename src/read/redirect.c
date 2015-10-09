@@ -5,7 +5,7 @@
 ** Login   <mart_4@epitech.net>
 **
 ** Started on  Sun Mar  8 17:15:33 2015 Thomas Martins
-** Last update Fri Oct  9 13:50:37 2015 Thomas Martins
+** Last update Fri Oct  9 14:00:49 2015 Thomas Martins
 */
 
 #include "../struct.h"
@@ -42,12 +42,7 @@ char	*change_str(char *cmd_old)
 
   if ((new_cmd = malloc(sizeof(char) * my_strlen(cmd_old) + 1)) == NULL)
     return (NULL);
-  new_cmd[0] = '/';
-  new_cmd[1] = 'b';
-  new_cmd[2] = 'i';
-  new_cmd[3] = 'n';
-  new_cmd[4] = '/';
-  new_cmd[5] = '\0';
+  new_cmd = my_strcpy(new_cmd, "/bin/");
   cat_str(new_cmd, cmd_old);
   return (new_cmd);
 }

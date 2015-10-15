@@ -1,28 +1,6 @@
-rm -f src/read/get_env.o src/read/pid.o src/word_tab/str_cat.o src/basic/func_all.o main.o src/basic/my_getnbr.o src/basic/strncmp.o src/word_tab/str_to_word_tab.o src/read/read_shell.o src/basic/my_strcmp.o src/read/prompt.o src/printf/function_one.o src/printf/my_function.o src/printf/my_putnbr_base.o src/printf/my_printf.o src/printf/my_putnbr_flag.o src/printf/printf_two.o src/read/get_env_next.o src/read/my_cd.o src/word_tab/new_str_word_tab.o src/basic/help.o src/basic/cat_str.o src/read/redirect.o src/basic/epur_str.o src/read/call_builtin.o
-rm -f mysh
-cc -c -pedantic -W -Wall -o src/read/get_env.o src/read/get_env.c
-cc -c -pedantic -W -Wall -o src/read/pid.o src/read/pid.c
-cc -c -pedantic -W -Wall -o src/word_tab/str_cat.o src/word_tab/str_cat.c
-cc -c -pedantic -W -Wall -o src/basic/func_all.o src/basic/func_all.c
-cc -c -pedantic -W -Wall -o main.o main.c
-cc -c -pedantic -W -Wall -o src/basic/my_getnbr.o src/basic/my_getnbr.c
-cc -c -pedantic -W -Wall -o src/basic/strncmp.o src/basic/strncmp.c
-cc -c -pedantic -W -Wall -o src/word_tab/str_to_word_tab.o src/word_tab/str_to_word_tab.c
-cc -c -pedantic -W -Wall -o src/read/read_shell.o src/read/read_shell.c
-cc -c -pedantic -W -Wall -o src/basic/my_strcmp.o src/basic/my_strcmp.c
-cc -c -pedantic -W -Wall -o src/read/prompt.o src/read/prompt.c
-cc -c -pedantic -W -Wall -o src/printf/function_one.o src/printf/function_one.c
-cc -c -pedantic -W -Wall -o src/printf/my_function.o src/printf/my_function.c
-cc -c -pedantic -W -Wall -o src/printf/my_putnbr_base.o src/printf/my_putnbr_base.c
-cc -c -pedantic -W -Wall -o src/printf/my_printf.o src/printf/my_printf.c
-cc -c -pedantic -W -Wall -o src/printf/my_putnbr_flag.o src/printf/my_putnbr_flag.c
-cc -c -pedantic -W -Wall -o src/printf/printf_two.o src/printf/printf_two.c
-cc -c -pedantic -W -Wall -o src/read/get_env_next.o src/read/get_env_next.c
-cc -c -pedantic -W -Wall -o src/read/my_cd.o src/read/my_cd.c
-cc -c -pedantic -W -Wall -o src/word_tab/new_str_word_tab.o src/word_tab/new_str_word_tab.c
-cc -c -pedantic -W -Wall -o src/basic/help.o src/basic/help.c
-cc -c -pedantic -W -Wall -o src/basic/cat_str.o src/basic/cat_str.c
-cc -c -pedantic -W -Wall -o src/read/redirect.o src/read/redirect.c
-cc -c -pedantic -W -Wall -o src/basic/epur_str.o src/basic/epur_str.c
-cc -c -pedantic -W -Wall -o src/read/call_builtin.o src/read/call_builtin.c
-cc -pedantic -W -Wall -o mysh src/read/get_env.o src/read/pid.o src/word_tab/str_cat.o src/basic/func_all.o main.o src/basic/my_getnbr.o src/basic/strncmp.o src/word_tab/str_to_word_tab.o src/read/read_shell.o src/basic/my_strcmp.o src/read/prompt.o src/printf/function_one.o src/printf/my_function.o src/printf/my_putnbr_base.o src/printf/my_printf.o src/printf/my_putnbr_flag.o src/printf/printf_two.o src/read/get_env_next.o src/read/my_cd.o src/word_tab/new_str_word_tab.o src/basic/help.o src/basic/cat_str.o src/read/redirect.o src/basic/epur_str.o src/read/call_builtin.o
+main.c
+main.o
+Makefile
+mysh
+src
+toto
